@@ -1,8 +1,54 @@
-<div class="trainer-detail">
-  <h2>{{ trainerDetail.name }}</h2>
-  <img [src]="trainerDetail.imageUrl" [alt]="trainerDetail.name" />
-  <p><strong>Age:</strong> {{ trainerDetail.age }}</p>
-  <p><strong>About...</strong> {{ trainerDetail.bigSnopsies }}</p>
-  <p><strong>Pokemons:</strong></p>
-  <app-pokemon-list [pokemonList]="trainerDetail.pokemons"></app-pokemon-list>
+<div class="container mt-4">
+  <!-- Tarjeta del entrenador -->
+  <div class="card p-4 border-primary border-2 shadow-lg">
+    <div class="row">
+      <!-- Imagen -->
+      <div class="col-md-4 text-center mb-3">
+        <img
+          [src]="trainerDetail.imageUrl"
+          [alt]="trainerDetail.name"
+          class="img-fluid rounded"
+          style="max-height: 300px;"
+        />
+      </div>
+
+      <!-- Detalles -->
+      <div class="col-md-8">
+        <h2>{{ trainerDetail.name }}</h2>
+        <p>{{ trainerDetail.bigSnopsies }}</p>
+        <p><strong>Edad:</strong> {{ trainerDetail.age }} años</p>
+        <p><strong>No. Pokémon:</strong> {{ trainerDetail.pokemons.length }}</p>
+        <p><strong>Promedio de nivel:</strong> {{ getAverageLevel() | number:'1.1-1' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de Pokémon -->
+  <div class="mt-5">
+    <h4>Pokémon:</h4>
+    <div class="row">
+      <div
+        class="col-6 col-sm-4 col-md-3 mb-4"
+        *ngFor="let p of trainerDetail.pokemons"
+      >
+        <div class="card h-100 shadow-sm text-center p-2">
+          <img
+            [src]="p.imageUrl"
+            class="card-img-top img-fluid"
+            [alt]="p.name"
+            style="max-height: 120px; object-fit: contain;"
+          />
+          <div class="card-body p-2">
+            <h6 class="card-title mb-1">{{ p.name }}</h6>
+            <p class="card-text">Nivel: {{ p.level }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón volver -->
+  <div class="mt-4 text-center">
+    <button class="btn btn-warning" (click)="goBack()">Volver al listado</button>
+  </div>
 </div>

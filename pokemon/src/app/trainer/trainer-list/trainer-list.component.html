@@ -1,39 +1,28 @@
-<div>
-  <div>
-    <div *ngIf="selected">
-      <app-trainer-detail
-        [trainerDetail]="selectedTrainer"
-      ></app-trainer-detail>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th class="h4">Trainers's Name</th>
-          <th class="h4">Trainer's Image</th>
-          <th class="h4">Trainer's Samll snapshot</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="let t of trainers"
-          class="row-table"
+<div class="container py-4" style="background-color: #3f8edc;">
+  <div class="row">
+    <div
+      *ngFor="let t of trainers"
+      class="col-12 col-sm-6 col-md-4 mb-4"
+    >
+      <div class="card h-100">
+        <img
+          [src]="t.imageUrl"
+          class="card-img-top"
+          [alt]="t.name"
           (click)="onSelected(t)"
-        >
-          <td>
-            <dd>{{ t.name }}</dd>
-          </td>
-          <td>
-            <img
-              [src]="t.imageUrl"
-              alt="Trainer's Image"
-              class="img-thumbnail"
-            />
-          </td>
-          <td>
-            <dd>{{ t.smallSnopsies }}</dd>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ t.name }}</h5>
+          <p class="card-text">{{ t.smallSnopsies }}</p>
+          <p class="card-text">
+            <strong>Age:</strong> {{ t.age }}
+          </p>
+          <p class="card-text">
+    <strong>No. Pokémon:</strong>
+<strong>No. Pokémon:</strong> {{ t.pokemons.length }}
+  </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
